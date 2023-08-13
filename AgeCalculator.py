@@ -6,7 +6,7 @@ import sys
 class AgeCalculator(QWidget):
     def __init__(self):
         super().__init__()
-
+        self.setWindowTitle("Age Calculator")
         # create widgets
         grid = QGridLayout()
         name = QLabel("name: ")
