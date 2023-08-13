@@ -1,6 +1,7 @@
-import sys
-from PyQt6.QtWidgets import QApplication, QGridLayout, QLineEdit, QPushButton, QVBoxLayout, QLabel, QWidget
 from datetime import datetime
+from PyQt6.QtWidgets import QApplication, QGridLayout, QLineEdit, QPushButton, QVBoxLayout, QLabel, QWidget
+import sys
+
 
 class AgeCalculator(QWidget):
     def __init__(self):
