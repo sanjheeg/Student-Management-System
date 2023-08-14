@@ -1,12 +1,13 @@
-from datetime import datetime
-from PyQt6.QtWidgets import QComboBox, QApplication, QGridLayout, QLineEdit, QPushButton, QVBoxLayout, QLabel, QWidget
+from PyQt6.QtWidgets import QComboBox, QApplication, QGridLayout, QLineEdit, QPushButton, QLabel, QWidget
 import sys
+
 
 class SpeedCalculator(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("average speed calculator")
 
+        # create widgets
         grid = QGridLayout()
         distance_l = QLabel("distance:")
         self.distance = QLineEdit()
@@ -19,6 +20,7 @@ class SpeedCalculator(QWidget):
         self.unit.addItem("miles")
         self.unit.addItem("kilometer")
 
+        # add widgets to layout
         grid.addWidget(distance_l, 0, 0)
         grid.addWidget(self.distance, 0, 1)
         grid.addWidget(self.time, 1, 1)
@@ -31,13 +33,14 @@ class SpeedCalculator(QWidget):
 
     def speed(self):
         avg = 0
-        len = self.unit.currentText()
-        if len == "miles":
+        option = self.unit.currentText()
+        if option == "miles":
             avg = float(self.distance.text()) / float(self.time.text())
             self.output.setText(f"the average speed is {avg} miles/hour")
         else:
             avg = float(self.distance.text()) / float(self.time.text())
             self.output.setText(f"the average speed is {avg} km/hour")
+
 
 app = QApplication(sys.argv)
 calc = SpeedCalculator()
