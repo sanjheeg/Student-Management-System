@@ -21,6 +21,7 @@ class MainWindow(QMainWindow):
         self.table = QTableWidget()
         self.table.setColumnCount(4)
         self.table.setHorizontalHeaderLabels(("ID", "name", "course", "mobile"))
+        self.table.verticalHeader().setVisible(False)
         # a layout is used when you use QWidgets and you have multiple widgets, with QMainWindow we have a lot of
         # different structures so we need to specify the central widget
         self.setCentralWidget(self.table)
