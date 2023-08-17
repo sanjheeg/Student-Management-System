@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QTableWidgetItem, QTableWidget, QMainWindow, QApplication, QGridLayout, QLineEdit, QPushButton, QVBoxLayout, QLabel, QWidget
+from PyQt6.QtWidgets import QComboBox, QVBoxLayout, QTableWidgetItem, QDialog, QTableWidget, QMainWindow, QApplication, QGridLayout, QLineEdit, QPushButton, QVBoxLayout, QLabel, QWidget
 import sys
 from PyQt6.QtGui import QAction
 import sqlite3
@@ -12,6 +12,7 @@ class MainWindow(QMainWindow):
         help_menu = self.menuBar().addMenu("&Help")
 
         add_student = QAction("add student", self)
+        add_student.triggered.connect(self.insert_student)
         file_menu.addAction(add_student)
 
         about = QAction("about", self)
@@ -35,6 +36,35 @@ class MainWindow(QMainWindow):
             for column_num, data in enumerate(row_data):
                 self.table.setItem(row_num, column_num, QTableWidgetItem(str(data)))
         connection.close()
+
+    def insert_student(self):
+        dialog = InsertDialog()
+        dialog.exec()
+
+
+class InsertDialog(QDialog):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("insert student data")
+        self.setFixedWidth(300)
+        self.setFixedHeight(300)
+
+        layout = QVBoxLayout()
+        name = QLineEdit()
+        name.setPlaceholderText("name: ")
+        layout.addWidget(name)
+
+        course = QComboBox()
+        options = ["Biology", "Math", "Astronomy", "Physics"]
+        course.addItems(options)
+        layout.addWidget(course)
+
+        phone = QLineEdit()
+        phone.setPlaceholderText("phone number: ")
+        layout.addWidget(phone)
+
+        self.setLayout(layout)
+
 
 app = QApplication(sys.argv)
 window = MainWindow()
